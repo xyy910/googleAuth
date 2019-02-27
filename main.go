@@ -20,6 +20,8 @@ type GAuth struct {
 }
 
 type Conf struct {
+	User string
+	Password string
 	Secret string
 }
 var Config Conf
@@ -77,5 +79,8 @@ func main()  {
 	gauth := NewGAuth()
 
 	token, err := gauth.GetCode(Config.Secret)
+	if err != nil {
+		log.Fatalln(err)
+	}
 	fmt.Println(token)
 }
